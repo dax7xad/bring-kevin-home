@@ -1,0 +1,13 @@
+name = "bring-kevin-home"
+compatibility_date = "2026-02-12"
+
+[assets]
+directory = "./dist/bring-kevin-home/browser"
+binding = "ASSETS"
+
+[[routes]]
+pattern = "/*"
+custom_cache = true
+
+[site]
+bucket = "./dist/bring-kevin-home/browser"
