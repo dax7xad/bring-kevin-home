@@ -1,0 +1,116 @@
+/* ========================================
+   COMMENTS COMPONENT - DARK THEME
+   ======================================== */
+
+.comments-section {
+  margin-top: 2rem;
+}
+
+.section-header {
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+
+/* ========================================
+   FORMULARIO
+   ======================================== */
+
+.form-control {
+  background-color: var(--bg-tertiary) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.form-control:focus {
+  background-color: var(--bg-tertiary) !important;
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 0.2rem rgba(88, 166, 255, 0.25) !important;
+  color: var(--text-primary) !important;
+}
+
+.form-control::placeholder {
+  color: var(--text-muted) !important;
+}
+
+.form-label {
+  color: var(--text-primary) !important;
+}
+
+/* ========================================
+   COMENTARIOS
+   ======================================== */
+
+.comments-list {
+  margin-top: 2rem;
+}
+
+.comment-card {
+  background-color: var(--bg-secondary) !important;
+  border: 1px solid var(--border-color) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.comment-card:hover {
+  transform: translateX(4px);
+  border-color: var(--border-color-strong) !important;
+}
+
+/* ========================================
+   AVATAR
+   ======================================== */
+
+.avatar-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--text-inverse);
+  font-size: 0.875rem;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(88, 166, 255, 0.3);
+}
+
+/* ========================================
+   ALERTS
+   ======================================== */
+
+.alert-success {
+  background-color: rgba(63, 185, 80, 0.1) !important;
+  border-color: rgba(63, 185, 80, 0.3) !important;
+  color: var(--color-success) !important;
+}
+
+.alert-danger {
+  background-color: rgba(218, 54, 51, 0.1) !important;
+  border-color: rgba(218, 54, 51, 0.3) !important;
+  color: var(--color-danger) !important;
+}
+
+/* ========================================
+   BUTTON
+   ======================================== */
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 576px) {
+  .avatar-circle {
+    width: 36px;
+    height: 36px;
+    font-size: 0.75rem;
+  }
+
+  .comment-card {
+    font-size: 0.9rem;
+  }
+}

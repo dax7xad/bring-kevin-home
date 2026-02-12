@@ -1,0 +1,50 @@
+/* ========================================
+   APP COMPONENT - DARK THEME
+   ======================================== */
+
+/* Efecto hover en botones */
+.btn {
+  transition: all 0.3s ease;
+}
+
+/* Mejoras en imágenes */
+img {
+  border: 1px solid var(--border-color);
+}
+
+/* Efecto en cards */
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Mejorar legibilidad de textos */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+}
+
+strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Links mejorados */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+/* Sticky elements con backdrop blur */
+.sticky-top {
+  backdrop-filter: blur(8px);
+  background-color: rgba(26, 31, 38, 0.95) !important;
+}

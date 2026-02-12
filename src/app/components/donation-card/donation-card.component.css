@@ -1,0 +1,30 @@
+/* ========================================
+   DONATION CARD - DARK THEME
+   ======================================== */
+
+/* Transiciones suaves */
+.btn {
+  transition: all 0.2s ease;
+}
+
+/* Efecto hover en botones de copiar */
+.btn-outline-secondary:hover {
+  transform: scale(1.1);
+}
+
+/* Espaciado y legibilidad */
+.font-monospace {
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+}
+
+/* Iconos con mejor contraste */
+.bi {
+  opacity: 0.9;
+}
+
+/* Hover en áreas de cuenta */
+.rounded-3:hover {
+  background-color: var(--bg-hover) !important;
+  transition: background-color 0.2s ease;
+}
