@@ -1,0 +1,55 @@
+<div class="card shadow-sm border-0 sticky-top" style="top: 20px;">
+  <div class="card-body p-4">
+    <h3 class="h5 mb-3 fw-bold text-secondary">
+      <i class="bi bi-heart-fill text-danger me-2"></i>Cuentas de Apoyo
+    </h3>
+
+    <div class="alert alert-light border mb-4 text-muted small">
+      <i class="bi bi-info-circle me-1"></i>
+      Todas las cuentas están a nombre del único hermano de Kevin: <br>
+      <strong>{{ titular }}</strong>
+    </div>
+
+    @for (acc of accounts; track acc.accountNumber) {
+    <div class="mb-4 p-3 bg-light rounded-3 border">
+
+      <div class="d-flex align-items-center mb-2">
+        <i class="bi {{acc.icon}} fs-4 me-2 text-primary"></i>
+        <div>
+          <h6 class="mb-0 fw-bold">{{ acc.bankName }}</h6>
+          <small class="text-muted">{{ acc.currency }}</small>
+          @if (acc.type) {
+          <span class="badge bg-secondary ms-1" style="font-size: 0.6rem;">{{ acc.type }}</span>
+          }
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center mb-1">
+        <span class="small text-muted">Cuenta:</span>
+        <div class="d-flex align-items-center">
+          <span class="fw-bold me-2">{{ acc.accountNumber }}</span>
+          <button (click)="copyToClipboard(acc.accountNumber)" class="btn btn-sm btn-outline-secondary p-0 px-1"
+            title="Copiar">
+            <i class="bi bi-clipboard"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center">
+        <span class="small text-muted">IBAN:</span>
+        <div class="d-flex align-items-center">
+          <span class="small text-break me-2 font-monospace" style="font-size: 0.75rem;">{{ acc.iban }}</span>
+          <button (click)="copyToClipboard(acc.iban)" class="btn btn-sm btn-outline-secondary p-0 px-1" title="Copiar">
+            <i class="bi bi-clipboard"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+    } <div class="text-center mt-3">
+      <small class="text-muted">
+        Gracias por ayudarnos a traer a Kevin a casa.
+      </small>
+    </div>
+  </div>
+</div>
