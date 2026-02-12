@@ -15,26 +15,41 @@ export class DonationCardComponent {
     {
       bankName: 'BAC Credomatic',
       currency: 'CÓRDOBAS',
+      accountLabel: 'Cuenta',
       accountNumber: '368641502',
       iban: 'NI59BAMC00000000000368641502',
+      ibanLabel: 'IBAN',
       icon: 'bi-wallet2',
       type: 'Corriente' // Agregado para evitar errores si lo llamas
     },
     {
       bankName: 'BAC Credomatic',
       currency: 'DÓLARES (USD)',
+      accountLabel: 'Cuenta',
       accountNumber: '364849547',
       iban: 'NI23BAMC00000000000364849547',
+      ibanLabel: 'IBAN',
       icon: 'bi-currency-dollar',
       type: 'Corriente'
     },
     {
       bankName: 'Banco LAFISE',
       currency: 'CÓRDOBAS',
+      accountLabel: 'Cuenta',
       accountNumber: '290503110',
       iban: 'NI48BCCE00000000000290503110',
+      ibanLabel: 'IBAN',
       icon: 'bi-bank',
       type: 'Cuenta de Ahorro'
+    },
+    {
+      bankName: 'Sinpe Movil Costa Rica',
+      currency: 'Colones',
+      holder: 'Yelko Carvajal Mora',
+      accountLabel: 'Telefono',
+      accountNumber: '506 70171822',
+      icon: 'bi-telephone-fill',
+      type: 'Sinpe Movil'
     }
   ];
 

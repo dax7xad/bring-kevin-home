@@ -21,11 +21,14 @@
           @if (acc.type) {
           <span class="badge ms-1" style="font-size: 0.6rem;">{{ acc.type }}</span>
           }
+          @if (acc.holder) {
+          <div class="small text-muted">{{ acc.holder }}</div>
+          }
         </div>
       </div>
 
       <div class="d-flex justify-content-between align-items-center mb-1">
-        <span class="small text-muted">Cuenta:</span>
+        <span class="small text-muted">{{ acc.accountLabel || 'Cuenta' }}:</span>
         <div class="d-flex align-items-center">
           <span class="fw-bold me-2">{{ acc.accountNumber }}</span>
           <button (click)="copyToClipboard(acc.accountNumber)" class="btn btn-sm btn-outline-secondary p-0 px-1"
@@ -35,8 +38,9 @@
         </div>
       </div>
 
+      @if (acc.iban) {
       <div class="d-flex justify-content-between align-items-center">
-        <span class="small text-muted">IBAN:</span>
+        <span class="small text-muted">{{ acc.ibanLabel || 'IBAN' }}:</span>
         <div class="d-flex align-items-center">
           <span class="small text-break me-2 font-monospace" style="font-size: 0.75rem;">{{ acc.iban }}</span>
           <button (click)="copyToClipboard(acc.iban)" class="btn btn-sm btn-outline-secondary p-0 px-1" title="Copiar">
@@ -44,6 +48,7 @@
           </button>
         </div>
       </div>
+      }
 
     </div>
     } <div class="text-center mt-3">
