@@ -1,17 +1,17 @@
-<div class="card shadow-sm border-0 sticky-top" style="top: 20px;">
+<div class="card shadow border sticky-top" style="top: 20px;">
   <div class="card-body p-4">
-    <h3 class="h5 mb-3 fw-bold text-secondary">
+    <h3 class="h5 mb-3 fw-bold">
       <i class="bi bi-heart-fill text-danger me-2"></i>Cuentas de Apoyo
     </h3>
 
-    <div class="alert alert-light border mb-4 text-muted small">
+    <div class="alert alert-light border mb-4 small">
       <i class="bi bi-info-circle me-1"></i>
       Todas las cuentas están a nombre del único hermano de Kevin: <br>
       <strong>{{ titular }}</strong>
     </div>
 
     @for (acc of accounts; track acc.accountNumber) {
-    <div class="mb-4 p-3 bg-light rounded-3 border">
+    <div class="mb-4 p-3 rounded-3 border" style="background-color: var(--bg-tertiary);">
 
       <div class="d-flex align-items-center mb-2">
         <i class="bi {{acc.icon}} fs-4 me-2 text-primary"></i>
@@ -19,7 +19,7 @@
           <h6 class="mb-0 fw-bold">{{ acc.bankName }}</h6>
           <small class="text-muted">{{ acc.currency }}</small>
           @if (acc.type) {
-          <span class="badge bg-secondary ms-1" style="font-size: 0.6rem;">{{ acc.type }}</span>
+          <span class="badge ms-1" style="font-size: 0.6rem;">{{ acc.type }}</span>
           }
         </div>
       </div>

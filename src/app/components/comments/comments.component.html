@@ -1,0 +1,125 @@
+<div class="comments-section">
+  <!-- Header -->
+  <div class="section-header mb-4">
+    <h3 class="h4 fw-bold mb-2">
+      <i class="bi bi-chat-heart-fill text-primary me-2"></i>
+      Mensajes de Apoyo
+    </h3>
+    <p class="text-secondary small mb-0">
+      Deja tus palabras de aliento para la familia
+    </p>
+  </div>
+
+  <!-- Formulario para nuevo comentario -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5 class="h6 fw-bold mb-3">Deja tu mensaje</h5>
+
+      <!-- Mensajes de estado -->
+      @if (showSuccess) {
+        <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+          <i class="bi bi-check-circle-fill me-2"></i>
+          ¡Gracias por tu mensaje de apoyo!
+        </div>
+      }
+
+      @if (showError) {
+        <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+          <i class="bi bi-exclamation-triangle-fill me-2"></i>
+          {{ errorMessage }}
+        </div>
+      }
+
+      <form (ngSubmit)="onSubmit()" #commentForm="ngForm">
+        <div class="mb-3">
+          <label for="name" class="form-label small fw-semibold">Tu nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            [(ngModel)]="newComment.name"
+            required
+            maxlength="50"
+            placeholder="Ej: María González"
+            [disabled]="isSubmitting">
+        </div>
+
+        <div class="mb-3">
+          <label for="message" class="form-label small fw-semibold">Tu mensaje</label>
+          <textarea
+            class="form-control"
+            id="message"
+            name="message"
+            rows="3"
+            [(ngModel)]="newComment.message"
+            required
+            minlength="10"
+            maxlength="500"
+            placeholder="Escribe tu mensaje de apoyo..."
+            [disabled]="isSubmitting"></textarea>
+          <small class="text-muted">
+            {{ newComment.message.length }}/500 caracteres
+          </small>
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!commentForm.form.valid || isSubmitting">
+          @if (isSubmitting) {
+            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+            Enviando...
+          } @else {
+            <i class="bi bi-send-fill me-2"></i>
+            Enviar mensaje
+          }
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Lista de comentarios -->
+  <div class="comments-list">
+    @if (comments$ | async; as comments) {
+      @if (comments.length === 0) {
+        <div class="text-center py-5 text-muted">
+          <i class="bi bi-chat-dots fs-1 mb-3 d-block"></i>
+          <p>Sé el primero en dejar un mensaje de apoyo</p>
+        </div>
+      } @else {
+        <div class="mb-3">
+          <small class="text-secondary">
+            <i class="bi bi-chat-left-text me-1"></i>
+            {{ comments.length }} mensaje{{ comments.length !== 1 ? 's' : '' }} de apoyo
+          </small>
+        </div>
+
+        @for (comment of comments; track comment.id) {
+          <div class="comment-card card mb-3">
+            <div class="card-body">
+              <div class="d-flex align-items-start">
+                <!-- Avatar -->
+                <div class="avatar-circle me-3">
+                  {{ getInitials(comment.name) }}
+                </div>
+
+                <!-- Contenido -->
+                <div class="flex-grow-1">
+                  <div class="d-flex justify-content-between align-items-start mb-1">
+                    <h6 class="mb-0 fw-bold">{{ comment.name }}</h6>
+                    <small class="text-muted">
+                      <i class="bi bi-clock me-1"></i>
+                      {{ formatDate(comment.timestamp) }}
+                    </small>
+                  </div>
+                  <p class="mb-0 mt-2 text-secondary">{{ comment.message }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      }
+    }
+  </div>
+</div>
