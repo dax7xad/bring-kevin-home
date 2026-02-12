@@ -1,7 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 /* src/styles.css */
-@import 'bootstrap/dist/css/bootstrap.min.css';
-@import 'bootstrap-icons/font/bootstrap-icons.css';
+/* Bootstrap se carga desde CDN en index.html */
 
 /* ========================================
    DARK THEME - PALETA DE COLORES
