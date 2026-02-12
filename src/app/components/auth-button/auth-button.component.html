@@ -1,0 +1,54 @@
+<!-- Usuario logueado -->
+@if (user$ | async; as user) {
+  @if (user) {
+    <div class="d-flex align-items-center gap-3">
+      <div class="user-info d-flex align-items-center gap-2">
+        @if (user.photoURL) {
+          <img
+            [src]="user.photoURL"
+            [alt]="user.displayName ?  user.displayName : 'Usuario'"
+            class="user-avatar"
+            [title]="user.email ? user.email : ''">
+        } @else {
+          <div class="avatar-circle">
+            {{ getInitials(user.displayName ? user.displayName : '') }}
+          </div>
+        }
+        <span class="user-name small fw-semibold text-secondary">
+          @if (user.displayName) {
+            {{ user.displayName }}
+          } @else {
+            {{ (user.email ? user.email.substring(0, user.email.indexOf('@')) : 'Usuario') }}
+          }
+        </span>
+      </div>
+      <button
+        (click)="onSignOut()"
+        [disabled]="isLoading"
+        class="btn btn-sm btn-outline-danger"
+        title="Cerrar sesión">
+        @if (isLoading) {
+          <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+        } @else {
+          <i class="bi bi-box-arrow-right me-1"></i>
+        }
+        Salir
+      </button>
+    </div>
+  }
+}@else {
+  <!-- Usuario no logueado -->
+  <button
+    (click)="onGoogleSignIn()"
+    [disabled]="isLoading"
+    class="btn btn-sm btn-primary google-signin-btn"
+    title="Iniciar sesión con Google">
+    @if (isLoading) {
+      <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+      Conectando...
+    } @else {
+      <i class="bi bi-google me-2"></i>
+      Iniciar con Google
+    }
+  </button>
+}
