@@ -74,6 +74,9 @@ export class CommentsComponent implements OnInit {
       // Reset form
       this.newComment = { name: '', message: '' };
 
+      // Recargar comentarios después de enviar
+      this.loadComments();
+
       // Show success message
       this.showSuccess = true;
       setTimeout(() => (this.showSuccess = false), 3000);
@@ -108,3 +111,4 @@ export class CommentsComponent implements OnInit {
       .slice(0, 2);
   }
 }
+

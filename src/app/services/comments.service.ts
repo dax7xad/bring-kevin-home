@@ -2,15 +2,15 @@ import { Injectable, inject } from '@angular/core';
 import {
   Firestore,
   collection,
+  CollectionReference,
   addDoc,
-  collectionData,
-  query,
-  orderBy,
+  getDocs,
   Timestamp,
   limit,
-  CollectionReference
+  query
 } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 export interface Comment {
   id?: string;
@@ -25,20 +25,46 @@ export interface Comment {
 })
 export class CommentsService {
   private firestore = inject(Firestore);
-  private commentsCollection = collection(this.firestore, 'comments') as CollectionReference;
+  private commentsCollection!: CollectionReference;
 
-  constructor() {}
+  constructor() {
+    this.commentsCollection = collection(this.firestore, 'comments') as CollectionReference;
+    console.log('✅ Servicio de comentarios inicializado');
+  }
 
   /**
-   * Obtener comentarios aprobados ordenados por fecha
+   * Obtener comentarios ordenados por fecha
    */
   getComments(limitCount: number = 50): Observable<Comment[]> {
-    const q = query(
-      this.commentsCollection,
-      orderBy('timestamp', 'desc'),
-      limit(limitCount)
+    console.log('📋 Obteniendo comentarios de Firestore...');
+
+    // Convertir la promesa de getDocs a Observable
+    return from(getDocs(this.commentsCollection)).pipe(
+      map(querySnapshot => {
+        console.log('📦 Documentos obtenidos de Firestore:', querySnapshot.docs.length);
+
+        const comments = querySnapshot.docs
+          .map(doc => ({
+            id: doc.id,
+            name: doc.get('name') || 'Anónimo',
+            message: doc.get('message') || '',
+            timestamp: doc.get('timestamp'),
+            approved: doc.get('approved') !== false
+          }))
+          .sort((a, b) => {
+            if (!a.timestamp || !b.timestamp) return 0;
+            const timeA = a.timestamp.toDate?.() || new Date(a.timestamp);
+            const timeB = b.timestamp.toDate?.() || new Date(b.timestamp);
+            return timeB.getTime() - timeA.getTime();
+          }) as Comment[];
+
+        console.log(`✅ Se obtuvieron ${comments.length} comentarios`);
+        if (comments.length > 0) {
+          console.log('📝 Primer comentario:', comments[0]);
+        }
+        return comments;
+      })
     );
-    return collectionData(q, { idField: 'id' }) as Observable<Comment[]>;
   }
 
   /**
@@ -50,8 +76,9 @@ export class CommentsService {
         name: name.trim(),
         message: message.trim(),
         timestamp: Timestamp.now(),
-        approved: true // Cambia a false si quieres moderación
+        approved: true
       });
+      console.log('✅ Comentario agregado correctamente');
     } catch (error) {
       console.error('Error al agregar comentario:', error);
       throw error;

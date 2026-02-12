@@ -6,7 +6,7 @@ import {
   signOut,
   user,
   User,
-  setPersistence,
+  initializeAuth,
   browserLocalPersistence
 } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
@@ -20,10 +20,6 @@ export class AuthService {
 
   constructor() {
     this.user$ = user(this.auth);
-    // Configurar persistencia de sesión
-    setPersistence(this.auth, browserLocalPersistence).catch(err =>
-      console.error('Error configurando persistencia:', err)
-    );
   }
 
   /**
