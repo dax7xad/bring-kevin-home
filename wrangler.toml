@@ -1,14 +1,13 @@
-# Cloudflare Pages Configuration
+name = "bring-kevin-home"
+compatibility_date = "2026-02-12"
 
-[build]
-  command = "npm install --legacy-peer-deps && npm run build"
-  publish = "dist/bring-kevin-home/browser"
+[assets]
+directory = "./dist/bring-kevin-home/browser"
+binding = "ASSETS"
 
-[build.environment]
-  NODE_VERSION = "20"
-  NPM_FLAGS = "--legacy-peer-deps"
+[[routes]]
+pattern = "/*"
+custom_cache = true
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+[site]
+bucket = "./dist/bring-kevin-home/browser"
