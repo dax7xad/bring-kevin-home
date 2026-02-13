@@ -43,13 +43,13 @@ export class DonationCardComponent {
       type: 'Cuenta de Ahorro'
     },
     {
-      bankName: 'Sinpe Movil Costa Rica',
-      currency: 'Colones',
-      holder: 'Yelko Carvajal Mora',
-      accountLabel: 'Telefono',
-      accountNumber: '506 70171822',
-      icon: 'bi-telephone-fill',
-      type: 'Sinpe Movil'
+      bankName: 'KASH',
+      currency: 'KASH App',
+      holder: 'Alvaro Dax Diaz Amaya',
+      accountLabel: 'Usuario',
+      accountNumber: '#dax7xad',
+      icon: 'bi-phone',
+      type: 'App'
     }
   ];
 
